@@ -61,4 +61,21 @@ class BookingsystemApplicationTests {
 		assertEquals("Software Development", foundBooking.get(0).getCourse().getName());
 	}
 
+//	Get all customers in a given town for a given course
+//	Get all customers over a certain age in a given town for a given course
+
+	@Test
+	public void canGetAllCustomersInAGivenTownForAGivenCourse(){
+		List<Customer> foundCustomer = customerRepository.findAllCustomerByTownIgnoreCaseAndBookingsCourseId("Watford", 1L);
+		assertEquals(1, foundCustomer.size());
+		assertEquals("Mark", foundCustomer.get(0).getName());
+	}
+
+	@Test
+	public void canGetAllCustomersOverACertainAgeInAGivenTownForAGivenCourse(){
+		List<Customer> foundCustomer = customerRepository.findAllCustomerByAgeGreaterThanAndTownIgnoreCaseAndBookingsCourseId(30, "Watford", 1L);
+		assertEquals(1, foundCustomer.size());
+		assertEquals("Mark", foundCustomer.get(0).getName());
+	}
+
 }
